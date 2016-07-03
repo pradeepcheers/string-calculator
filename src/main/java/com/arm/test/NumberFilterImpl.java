@@ -15,6 +15,10 @@ public class NumberFilterImpl implements NumberFilter {
 
     @Override
     public List<Integer> mapToInt(List<String> listOfString) {
-        return null;
+        return listOfString
+                .stream()
+                .mapToInt(Integer::parseInt)
+                .boxed()
+                .collect(Collectors.toList());
     }
 }

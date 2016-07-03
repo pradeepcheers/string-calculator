@@ -42,7 +42,7 @@ public class StringCalculatorTest {
     public void shouldAddUnknownAmountOfNumbers() {
         int result = stringCalculator.add("123456789,1,10,100");
 
-        assertThat(result, is(123456900));
+        assertThat(result, is(111));
     }
 
     @Test
@@ -60,7 +60,7 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void testAddForNegativeNumbers() {
+    public void throwExceptionOnAddingNegativeNumbers() {
         expectedException.expect(IllegalArgumentException.class);
         expectedException.expectMessage("Negatives not allowed ");
 
@@ -68,7 +68,14 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void testAddNumbersBiggerThan1000ShouldBeIgnored() {
+    public void shouldIgnoreNumbersBiggerThan1000() {
+        int result = stringCalculator.add(";1001\n2");
+
+        assertThat(result, is(2));
+    }
+
+    @Test
+    public void addShouldIgnoreNumbersBiggerThan1000() {
         int result = stringCalculator.add(";1000\n2000\n4");
 
         assertThat(result, is(4));

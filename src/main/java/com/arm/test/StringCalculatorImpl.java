@@ -20,6 +20,7 @@ public class StringCalculatorImpl implements StringCalculator {
                 .splitAsStream(numbers)
                 .filter(seq -> !seq.equals(""))
                 .mapToInt(Integer::parseInt)
+                .filter(seq -> seq < 1000)
                 .filter(seq -> {
                     if(seq < 0) {
                         negativeNumbers.add(seq);

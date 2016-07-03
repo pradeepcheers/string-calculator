@@ -7,11 +7,15 @@ import java.util.regex.Pattern;
  */
 public class StringCalculatorImpl implements StringCalculator {
 
-    private static Pattern pattern = Pattern.compile("[,\n]");
+    private static Pattern pattern = Pattern.compile("[,\n;/]");
 
     @Override
     public int add(String numbers) {
 
-        return pattern.splitAsStream(numbers).mapToInt(Integer::parseInt).sum();
+        return pattern
+                .splitAsStream(numbers)
+                .filter(seq -> !seq.equals(""))
+                .mapToInt(Integer::parseInt)
+                .sum();
     }
 }

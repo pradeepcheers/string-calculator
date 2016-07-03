@@ -1,4 +1,4 @@
-package com.arm.test;
+package com.arm.test.model;
 
 import org.junit.Before;
 import org.junit.Rule;

@@ -1,4 +1,4 @@
-package com.arm.test;
+package com.arm.test.model;
 
 import java.util.List;
 import java.util.regex.Pattern;

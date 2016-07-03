@@ -1,4 +1,4 @@
-package com.arm.test;
+package com.arm.test.model;
 
 /**
  * String calculator calculates provides add method to perform addition

@@ -1,5 +1,7 @@
-package com.arm.test;
+package com.arm.test.model;
 
+import com.arm.test.model.CharactersFilter;
+import com.arm.test.model.CharactersFilterImpl;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 

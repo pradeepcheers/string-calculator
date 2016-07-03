@@ -1,4 +1,4 @@
-package com.arm.test;
+package com.arm.test.model;
 
 import com.google.common.collect.Lists;
 import org.junit.Rule;

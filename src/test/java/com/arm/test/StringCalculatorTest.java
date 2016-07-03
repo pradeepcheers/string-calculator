@@ -1,5 +1,6 @@
 package com.arm.test;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -82,9 +83,16 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void testAddForMultipleDelimiters() {
+    public void shouldAddWithMultipleDelimiters() {
         int result = stringCalculator.add("//[*][%]\\n1*2%3");
 
         assertThat(result, is(6));
+    }
+
+    @Test
+    public void shouldAddWithMultipleDelimitersForLengthMoreThanOneChar() {
+        int result = stringCalculator.add("//[******][%%%%%]\\n1*2%3");
+
+        assertThat(result, CoreMatchers.is(6));
     }
 }

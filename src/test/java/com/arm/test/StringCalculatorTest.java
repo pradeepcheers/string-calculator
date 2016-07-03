@@ -40,4 +40,11 @@ public class StringCalculatorTest {
 
         assertThat(result, CoreMatchers.is(123456900));
     }
+
+    @Test
+    public void testAddWithNewLineDelimiter() {
+        int result = stringCalculator.add("1\n2,3");
+
+        assertThat(result, is(6));
+    }
 }

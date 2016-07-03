@@ -13,9 +13,16 @@ public class StringCalculatorTest {
     private StringCalculator stringCalculator = new StringCalculatorImpl();
 
     @Test
-    public void shouldAddFromGivenString() {
+    public void shouldAddFromAGivenString() {
         int sum = stringCalculator.add("2,3");
 
         assertThat(sum, is(5));
+    }
+
+    @Test
+    public void shouldAddForAnEmptyString() {
+        int result = stringCalculator.add("");
+
+        assertThat(result, is(0));
     }
 }

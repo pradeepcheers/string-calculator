@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  */
 public class StringCalculatorImpl implements StringCalculator {
 
-    private static Pattern pattern = Pattern.compile("[,\n;/]");
+    private static Pattern pattern = Pattern.compile("[,\n;/\\\\n (\\[*\\]) (\\[%\\])]");
 
     private List<Integer> negativeNumbers = new ArrayList<>();
 

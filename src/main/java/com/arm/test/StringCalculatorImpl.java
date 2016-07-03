@@ -1,5 +1,6 @@
 package com.arm.test;
 
+import java.util.regex.Pattern;
 import static org.springframework.util.Assert.hasText;
 
 /**
@@ -11,6 +12,8 @@ public class StringCalculatorImpl implements StringCalculator {
     public int add(String numbers) {
         hasText(numbers, "Input cannot be null or empty");
 
-        return 5;
+        Pattern patten = Pattern.compile(",");
+
+        return patten.splitAsStream(numbers).mapToInt(Integer::parseInt).sum();
     }
 }

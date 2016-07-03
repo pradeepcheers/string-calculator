@@ -80,4 +80,11 @@ public class StringCalculatorTest {
 
         assertThat(result, is(4));
     }
+
+    @Test
+    public void testAddForMultipleDelimiters() {
+        int result = stringCalculator.add("//[*][%]\\n1*2%3");
+
+        assertThat(result, is(6));
+    }
 }

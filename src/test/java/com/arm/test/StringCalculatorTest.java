@@ -1,6 +1,5 @@
 package com.arm.test;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -43,7 +42,7 @@ public class StringCalculatorTest {
     public void shouldAddUnknownAmountOfNumbers() {
         int result = stringCalculator.add("123456789,1,10,100");
 
-        assertThat(result, CoreMatchers.is(123456900));
+        assertThat(result, is(123456900));
     }
 
     @Test
@@ -57,7 +56,7 @@ public class StringCalculatorTest {
     public void shouldAddForDelimiterWithLineSeparatorBeginningOfTheString() {
         int result = stringCalculator.add("//;\n1;2");
 
-        assertThat(result, CoreMatchers.is(3));
+        assertThat(result, is(3));
     }
 
     @Test
@@ -66,5 +65,12 @@ public class StringCalculatorTest {
         expectedException.expectMessage("Negatives not allowed ");
 
         stringCalculator.add("-5//-4;\n-1;2");
+    }
+
+    @Test
+    public void testAddNumbersBiggerThan1000ShouldBeIgnored() {
+        int result = stringCalculator.add(";1000\n2000\n4");
+
+        assertThat(result, is(4));
     }
 }

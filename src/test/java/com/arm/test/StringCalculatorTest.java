@@ -1,7 +1,9 @@
 package com.arm.test;
 
 import org.hamcrest.CoreMatchers;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -10,6 +12,9 @@ import static org.hamcrest.core.Is.is;
  * Tests for {@code StringCalculator}
  */
 public class StringCalculatorTest {
+
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
 
     private StringCalculator stringCalculator = new StringCalculatorImpl();
 
@@ -53,5 +58,13 @@ public class StringCalculatorTest {
         int result = stringCalculator.add("//;\n1;2");
 
         assertThat(result, CoreMatchers.is(3));
+    }
+
+    @Test
+    public void testAddForNegativeNumbers() {
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage("Negatives not allowed ");
+
+        stringCalculator.add("-5//-4;\n-1;2");
     }
 }

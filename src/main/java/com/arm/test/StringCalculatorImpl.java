@@ -21,6 +21,8 @@ public class StringCalculatorImpl implements StringCalculator {
 
     private CharactersFilter charactersFilter;
 
+    private NumberFilter numberFilter;
+
     @Override
     public int add(String numbers) {
 

@@ -1,5 +1,6 @@
 package com.arm.test.action;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,5 +25,10 @@ public class StringCalculatorController {
         hasText(numbers);
 
         return stringCalculatorService.add(numbers);
+    }
+
+    @Autowired
+    public void setStringCalculatorService(StringCalculatorService stringCalculatorService) {
+        this.stringCalculatorService = stringCalculatorService;
     }
 }

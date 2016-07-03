@@ -1,14 +1,19 @@
 package com.arm.test.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.regex.Pattern;
 
 /**
  * Default implementation of {@code StringCalculator}
  */
+@Component
 public class StringCalculatorImpl implements StringCalculator {
 
-    private static final String DELIMITER = "[,\n;/\\\\n (\\[*\\]) (\\[%\\])]";
+    private static final String DELIMITER = "[,\n;/\\\\n (\\[*\\]) (\\[%\\]){}]";
 
     private static Pattern pattern = Pattern.compile(DELIMITER);
 
@@ -32,10 +37,14 @@ public class StringCalculatorImpl implements StringCalculator {
         return listOfNumbers.stream().mapToInt(Integer::intValue).sum();
     }
 
+    @Autowired
+    @Required
     public void setCharactersFilter(CharactersFilter charactersFilter) {
         this.charactersFilter = charactersFilter;
     }
 
+    @Autowired
+    @Required
     public void setNumbersFilter(NumbersFilter numbersFilter) {
         this.numbersFilter = numbersFilter;
     }

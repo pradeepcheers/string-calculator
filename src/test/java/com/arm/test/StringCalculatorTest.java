@@ -35,16 +35,23 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void testAddToAllowUnknownAmountOfNumbers() {
+    public void shouldAddUnknownAmountOfNumbers() {
         int result = stringCalculator.add("123456789,1,10,100");
 
         assertThat(result, CoreMatchers.is(123456900));
     }
 
     @Test
-    public void testAddWithNewLineDelimiter() {
+    public void shouldAddWithNewLineDelimiter() {
         int result = stringCalculator.add("1\n2,3");
 
         assertThat(result, is(6));
+    }
+
+    @Test
+    public void shouldAddForDelimiterWithLineSeparatorBeginningOfTheString() {
+        int result = stringCalculator.add("//;\n1;2");
+
+        assertThat(result, CoreMatchers.is(3));
     }
 }

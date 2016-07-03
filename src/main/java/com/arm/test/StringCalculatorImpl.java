@@ -9,11 +9,13 @@ import java.util.regex.Pattern;
  */
 public class StringCalculatorImpl implements StringCalculator {
 
+    private static final String DELIMITER = "[,\n;/\\\\n (\\[*\\]) (\\[%\\])]";
+
+    private static Pattern pattern = Pattern.compile(DELIMITER);
+
     private static final int BIG_NUMBER_LIMIT = 1000;
 
     private static final int ZERO = 0;
-
-    private static Pattern pattern = Pattern.compile("[,\n;/\\\\n (\\[*\\]) (\\[%\\])]");
 
     private List<Integer> negativeNumbers = new ArrayList<>();
 

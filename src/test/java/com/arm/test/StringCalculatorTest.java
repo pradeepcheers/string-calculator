@@ -1,5 +1,6 @@
 package com.arm.test;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -22,7 +23,17 @@ public class StringCalculatorTest {
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
-    private StringCalculator stringCalculator = new StringCalculatorImpl();
+    private CharactersFilter charactersFilter;
+
+    private StringCalculatorImpl stringCalculator;
+
+    @Before
+    public void init() {
+        charactersFilter = new CharactersFilterImpl();
+
+        stringCalculator = new StringCalculatorImpl();
+        stringCalculator.setCharactersFilter(charactersFilter);
+    }
 
     @Parameter(value = 0)
     public String numbers;

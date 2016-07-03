@@ -19,12 +19,15 @@ public class StringCalculatorImpl implements StringCalculator {
 
     private List<Integer> negativeNumbers = new ArrayList<>();
 
+    private CharactersFilter charactersFilter;
+
     @Override
     public int add(String numbers) {
 
-        Integer sum = pattern
-                .splitAsStream(numbers)
-                .filter(seq -> !seq.equals(""))
+        List<String> filteredString = charactersFilter.filterEmptyCharacters(numbers, pattern);
+
+        Integer sum = filteredString
+                .stream()
                 .mapToInt(Integer::parseInt)
                 .filter(seq -> seq < BIG_NUMBER_LIMIT)
                 .filter(seq -> {
@@ -39,5 +42,9 @@ public class StringCalculatorImpl implements StringCalculator {
             throw new IllegalArgumentException("Negatives not allowed " + negativeNumbers.toString());
 
         return sum;
+    }
+
+    public void setCharactersFilter(CharactersFilter charactersFilter) {
+        this.charactersFilter = charactersFilter;
     }
 }

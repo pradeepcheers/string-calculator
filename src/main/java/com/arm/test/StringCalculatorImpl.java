@@ -49,4 +49,8 @@ public class StringCalculatorImpl implements StringCalculator {
     public void setCharactersFilter(CharactersFilter charactersFilter) {
         this.charactersFilter = charactersFilter;
     }
+
+    public void setNumberFilter(NumberFilter numberFilter) {
+        this.numberFilter = numberFilter;
+    }
 }

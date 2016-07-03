@@ -8,4 +8,6 @@ import java.util.List;
 public interface NumberFilter {
 
     List<Integer> filterBigNumbers(List<Integer> listOfNumbers, Integer limit);
+
+    List<Integer> mapToInt(List<String> listOfString);
 }

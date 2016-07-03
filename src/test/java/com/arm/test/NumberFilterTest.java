@@ -19,10 +19,17 @@ public class NumberFilterTest {
     public void testFilterBigNumbers() {
         List<Integer> listOfIntegers = Lists.newArrayList(1, 120, 2);
 
-        List<Integer> expectedListOfIntegers = Lists.newArrayList(1, 2);
-
         List<Integer> filteredListOfIntegers = numberFilter.filterBigNumbers(listOfIntegers, 100);
 
-        assertThat(filteredListOfIntegers, is(expectedListOfIntegers));
+        assertThat(filteredListOfIntegers, is(Lists.newArrayList(1, 2)));
+    }
+
+    @Test
+    public void testMapToInt() {
+        List<String> listOfString = Lists.newArrayList("1", "2");
+
+        List<Integer> mappedIntegers = numberFilter.mapToInt(listOfString);
+
+        assertThat(mappedIntegers, is(Lists.newArrayList(1, 2)));
     }
 }

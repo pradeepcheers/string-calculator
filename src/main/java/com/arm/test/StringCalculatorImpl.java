@@ -21,36 +21,27 @@ public class StringCalculatorImpl implements StringCalculator {
 
     private CharactersFilter charactersFilter;
 
-    private NumberFilter numberFilter;
+    private NumbersFilter numbersFilter;
 
     @Override
     public int add(String numbers) {
 
         List<String> filteredString = charactersFilter.filterEmptyCharacters(numbers, pattern);
 
-        Integer sum = filteredString
-                .stream()
-                .mapToInt(Integer::parseInt)
-                .filter(seq -> seq < BIG_NUMBER_LIMIT)
-                .filter(seq -> {
-                    if(seq < ZERO) {
-                        negativeNumbers.add(seq);
-                    }
-                    return true;
-                })
-                .sum();
+        List<Integer> listOfNumbers = numbersFilter.mapToInt(filteredString);
 
-        if(negativeNumbers.size() > ZERO)
-            throw new IllegalArgumentException("Negatives not allowed " + negativeNumbers.toString());
+        listOfNumbers = numbersFilter.filterBigNumbers(listOfNumbers, BIG_NUMBER_LIMIT);
 
-        return sum;
+        listOfNumbers = numbersFilter.logNegativeNumberAndThrowException(listOfNumbers);
+
+        return listOfNumbers.stream().mapToInt(Integer::intValue).sum();
     }
 
     public void setCharactersFilter(CharactersFilter charactersFilter) {
         this.charactersFilter = charactersFilter;
     }
 
-    public void setNumberFilter(NumberFilter numberFilter) {
-        this.numberFilter = numberFilter;
+    public void setNumbersFilter(NumbersFilter numbersFilter) {
+        this.numbersFilter = numbersFilter;
     }
 }

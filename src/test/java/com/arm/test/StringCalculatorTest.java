@@ -23,16 +23,20 @@ public class StringCalculatorTest {
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
+    private StringCalculatorImpl stringCalculator;
+
     private CharactersFilter charactersFilter;
 
-    private StringCalculatorImpl stringCalculator;
+    private NumbersFilter numbersFilter;
 
     @Before
     public void init() {
         charactersFilter = new CharactersFilterImpl();
+        numbersFilter = new NumbersFilterImpl();
 
         stringCalculator = new StringCalculatorImpl();
         stringCalculator.setCharactersFilter(charactersFilter);
+        stringCalculator.setNumbersFilter(numbersFilter);
     }
 
     @Parameter(value = 0)
